@@ -1,8 +1,17 @@
 <?php
-$zray = new ZrayExtension('launchdarkly');
+$zre = new ZrayExtension('launchdarkly');
 
-$zre->setEnabledAfter('Unirest::request');
+$zre->setEnabledAfter('\LaunchDarkly\LDClient::__construct');
 
-$zre->traceFunction('Unirest::request', function($context, &$storage){}, function($context, &$storage){
-
+$zre->traceFunction('\LaunchDarkly\LDUser::__construct', function($context, &$storage){}, function($context, &$storage){
+    $storage['LaunchDarklyUser'][] = $context['functionArgs'];
 });
+
+$zre->traceFunction('\LaunchDarkly\LDClient::__construct', function($context, &$storage){}, function($context, &$storage){
+    $storage['LaunchDarklyConfig'][] = $context['functionArgs'][1];
+});
+
+$zre->traceFunction('\GuzzleHttp\Client::__construct', function($context, &$storage){}, function($context, &$storage){
+    $storage['GuzzleHttpClient'][] = $context['returnValue'];
+});
+
