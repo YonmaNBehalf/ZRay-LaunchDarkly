@@ -1,0 +1,15 @@
+{
+  "name" : "Launch Darkly",
+  "display_name" : "Launch Darkly Information",
+  "version" : "1.0.0",
+  "type": ["zray"],
+  "dependencies": {
+    "plugin": {
+      "min": "1.0",
+      "max": "2.0"
+    },
+    "php": {
+      "min": "5.4"
+    }
+  }
+}
