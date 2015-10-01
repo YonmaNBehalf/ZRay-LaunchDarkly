@@ -8,21 +8,13 @@ class Module extends \ZRay\ZRayModule {
         return array(
             // The name defined in ZRayExtension
             'extension' => array(
-                'name' => 'Requests',
+                'name' => 'launchdarkly',
             ),
             // Prevent those default panels from being displayed
             'defaultPanels' => array(
-//                'Requests' => false,
             ),
             // configure all custom panels
             'panels' => array(
-//                'unirestApiTable' => array(
-//                    'display'           => true,
-//                    'menuTitle'         => 'UniRest Requests',
-//                    'panelTitle'        => 'UniRest Requests',
-//                    'searchId'          => 'unirest-table-search',
-//                    'pagerId'           => 'unirest-table-pager',
-//                )
             )
         );
     }

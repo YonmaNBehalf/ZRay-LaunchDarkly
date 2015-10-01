@@ -1,5 +1,5 @@
 {
-  "name" : "Launch Darkly",
+  "name" : "launchdarkly",
   "display_name" : "Launch Darkly Information",
   "version" : "1.0.0",
   "type": ["zray"],
