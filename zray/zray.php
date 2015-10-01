@@ -21,13 +21,10 @@ register_shutdown_function(function() use ($zre) {
     $zre->eventShutdown();
 });
 
+$zre->setEnabledAfter('LaunchDarkly\LDClient::__construct');
 
-$zre->setEnabled(true);
-//$zre->setEnabledAfter('\GuzzleHttp\Client::send');
-//$zre->setEnabledAfter('\LaunchDarkly\LDClient::__construct');
-//
 $zre->traceFunction('LaunchDarkly\LDUser::__construct', function($context, &$storage){}, function($context, &$storage){
-    $storage['LaunchDarklyUser'][] = array(
+    $storage['UserObjects'][] = array(
         'key' => $context['functionArgs'][0],
         'secondary' => $context['functionArgs'][1],
         'ip' => $context['functionArgs'][2],
@@ -43,7 +40,7 @@ $zre->traceFunction('LaunchDarkly\LDUser::__construct', function($context, &$sto
 });
 
 $zre->traceFunction('LaunchDarkly\LDClient::__construct', function($context, &$storage){}, function($context, &$storage){
-    $storage['LaunchDarklyConfig'] = $context['functionArgs'][1];
+    $storage['ClientConfig'][] = array_merge($context['functionArgs'][1], array('key' => $context['functionArgs'][0]));
 });
 
 /// collect features mapping calls
