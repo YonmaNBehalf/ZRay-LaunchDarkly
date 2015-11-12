@@ -21,7 +21,7 @@ register_shutdown_function(function() use ($zre) {
     $zre->eventShutdown();
 });
 
-$zre->setEnabledAfter('LaunchDarkly\LDClient::__construct');
+$zre->setEnabledAfter('LaunchDarkly\LDUser::__construct');
 
 $zre->traceFunction('LaunchDarkly\LDUser::__construct', function($context, &$storage){}, function($context, &$storage){
     $storage['UserObjects'][] = array(
